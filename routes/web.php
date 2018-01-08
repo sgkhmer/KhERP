@@ -56,21 +56,34 @@ Route::group(['middleware' => 'auth'], function() {
         return response()->json(['success' => 'true', 'message' => 'Loading users', 'data' => ['users' => $users->toJson()]], 200);
     });
     
-    // menu
-    Route::resource('/api/menu', 'Backend\MenuController');
-    // 
+    // // menu
+    // Route::resource('/api/menu', 'Backend\MenuController');
+    // //
 
-    Route::get('/api/getTest', 'FrontEnd\TestController@getTest');
-    Route::get('/api/show/{id}', 'FrontEnd\TestController@getShow');
-    Route::put('/api/update', 'FrontEnd\TestController@UpdateApi');
+    // Route::get('/api/getTest', 'FrontEnd\TestController@getTest');
+    // Route::get('/api/show/{id}', 'FrontEnd\TestController@getShow');
+    // Route::put('/api/update', 'FrontEnd\TestController@UpdateApi');
 
-    
-    Route::get('admin', 'Backend\AdminController@index');
+    // Route::get('admin', 'Backend\AdminController@index');
 
-    Route::get('admin/dashboard/', function () {
-        return view('dashboard');
-    });
+    // Route::get('admin/dashboard/', function () {
+    //     return view('dashboard');
+    // });
 
+});
+
+// menu
+Route::resource('/api/menu', 'Backend\MenuController');
+//
+
+Route::get('/api/getTest', 'FrontEnd\TestController@getTest');
+Route::get('/api/show/{id}', 'FrontEnd\TestController@getShow');
+Route::put('/api/update', 'FrontEnd\TestController@UpdateApi');
+
+Route::get('admin', 'Backend\AdminController@index');
+
+Route::get('admin/dashboard/', function () {
+    return view('dashboard');
 });
 
 
