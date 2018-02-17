@@ -79,7 +79,7 @@
 <script type="text/javascript">
     import Flash from './helper/flash'
     // template
-    import MenuComponent from './views/Components/saleSystem/include/_menu.vue'
+    import MenuComponent from './views/Components/moneyTransfer/include/_menu.vue'
 
     export default{
       data(){

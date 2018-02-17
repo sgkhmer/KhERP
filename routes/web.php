@@ -41,14 +41,14 @@ if (Request::is('api*')){
             // Route::prefix('api')->group(function () {
                 //=====Categories API=============================
                 // Route::get('/categories/list','FrontEnd\Common\HeaderController@index');
-                Route::resource('categories', 'Backend\Category\CategoryController');
-                Route::get('getCategories', 'Backend\Category\CategoryController@getCategoriesList');
-                Route::get('getCategories_type', 'Backend\Category\CategoryController@getCategoriesType');
-                Route::get('getCategories_parent', 'Backend\Category\CategoryController@getCategoriesParent');
+                Route::resource('categories', 'MoneyTransfer\Category\CategoryController');
+                Route::get('getCategories', 'MoneyTransfer\Category\CategoryController@getCategoriesList');
+                Route::get('getCategories_type', 'MoneyTransfer\Category\CategoryController@getCategoriesType');
+                Route::get('getCategories_parent', 'MoneyTransfer\Category\CategoryController@getCategoriesParent');
                  //=====Product API=============================
-                Route::resource('products', 'Backend\Products\ProductsController');
-                Route::get('/getManufacturers','Backend\Manufacturers\ManufacturersController@getManufacturers');
-                Route::get('/getMenus', 'Backend\Settings\GroupRolesController@index');
+                Route::resource('products', 'MoneyTransfer\Products\ProductsController');
+                Route::get('/getManufacturers','MoneyTransfer\Manufacturers\ManufacturersController@getManufacturers');
+                Route::get('/getMenus', 'MoneyTransfer\Settings\GroupRolesController@index');
             // });
 
         // }else{

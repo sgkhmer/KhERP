@@ -11,44 +11,55 @@ import ShowForm from './views/Auth/Show.vue'
 import CreateForm from './views/Auth/Form.vue'
 import App from './App.vue'
 import Appl from './Appl.vue'
+//Setup Master ##################
+import AccountRule from './views/Components/moneyTransfer/setup_master/account_rule/AccountRule.vue'
+import AccountRuleList from './views/Components/moneyTransfer/setup_master/account_rule/AccountRuleList.vue'
+import AccountRuleForm from './views/Components/moneyTransfer/setup_master/account_rule/AccountRuleForm.vue'
+import AccountRuleEdit from './views/Components/moneyTransfer/setup_master/account_rule/AccountRuleEdit.vue'
+
+import AccountType from './views/Components/moneyTransfer/setup_master/account_type/AccountType.vue'
+import AccountTypeList from './views/Components/moneyTransfer/setup_master/account_type/AccountTypeList.vue'
+import AccountTypeForm from './views/Components/moneyTransfer/setup_master/account_type/AccountTypeForm.vue'
+import AccountTypeEdit from './views/Components/moneyTransfer/setup_master/account_type/AccountTypeEdit.vue'
+
 //setting########################
-import Setting from './views/Components/saleSystem/settings/Setting.vue'
-import SettingForm from './views/Components/saleSystem/settings/MainForm.vue'
-import SettingList from './views/Components/saleSystem/settings/SettingList.vue'
-import SettingEditForm from './views/Components/saleSystem/settings/EditForm.vue'
+import Setting from './views/Components/moneyTransfer/settings/Setting.vue'
+import SettingForm from './views/Components/moneyTransfer/settings/MainForm.vue'
+import SettingList from './views/Components/moneyTransfer/settings/SettingList.vue'
+import SettingEditForm from './views/Components/moneyTransfer/settings/EditForm.vue'
 //end setting####################
 
 //User and user Group########################
-import User from './views/Components/saleSystem/users/User.vue'
-import UserForm from './views/Components/saleSystem/users/MainForm.vue'
-import UserList from './views/Components/saleSystem/users/UserList.vue'
-import UserEditForm from './views/Components/saleSystem/users/UserEditForm.vue'
+import User from './views/Components/moneyTransfer/users/User.vue'
+import UserForm from './views/Components/moneyTransfer/users/MainForm.vue'
+import UserList from './views/Components/moneyTransfer/users/UserList.vue'
+import UserEditForm from './views/Components/moneyTransfer/users/UserEditForm.vue'
 
 //User group#########################
-import UserGroup from './views/Components/saleSystem/user_groups/UserGroup.vue'
-import UserGroupForm from './views/Components/saleSystem/user_groups/MainForm.vue'
-import UserGroupList from './views/Components/saleSystem/user_groups/UserGroupList.vue'
-import UserGroupEditForm from './views/Components/saleSystem/user_groups/UserGroupEditForm.vue'
+import UserGroup from './views/Components/moneyTransfer/user_groups/UserGroup.vue'
+import UserGroupForm from './views/Components/moneyTransfer/user_groups/MainForm.vue'
+import UserGroupList from './views/Components/moneyTransfer/user_groups/UserGroupList.vue'
+import UserGroupEditForm from './views/Components/moneyTransfer/user_groups/UserGroupEditForm.vue'
 //User Role#########################
-import UserRole from './views/Components/saleSystem/users/UserRole.vue'
-import UserRoleList from './views/Components/saleSystem/users/UserRoleList.vue'
-import UserRoleForm from './views/Components/saleSystem/users/UserRoleForm.vue'
-import UserRoleEdit from './views/Components/saleSystem/users/UserRoleEdit.vue'
-import UserRolePermission from './views/Components/saleSystem/users/UserRolePermission.vue'
+import UserRole from './views/Components/moneyTransfer/users/UserRole.vue'
+import UserRoleList from './views/Components/moneyTransfer/users/UserRoleList.vue'
+import UserRoleForm from './views/Components/moneyTransfer/users/UserRoleForm.vue'
+import UserRoleEdit from './views/Components/moneyTransfer/users/UserRoleEdit.vue'
+import UserRolePermission from './views/Components/moneyTransfer/users/UserRolePermission.vue'
 
 //End User Group####################
 
 //***** Language *****
-import Language from './views/Components/saleSystem/languages/Language.vue'
-import LanguageList from './views/Components/saleSystem/languages/LanguageList.vue'
-import LanguageForm from './views/Components/saleSystem/languages/MainForm.vue'
-import LanguageEdit from './views/Components/saleSystem/languages/EditForm.vue'
+import Language from './views/Components/moneyTransfer/languages/Language.vue'
+import LanguageList from './views/Components/moneyTransfer/languages/LanguageList.vue'
+import LanguageForm from './views/Components/moneyTransfer/languages/MainForm.vue'
+import LanguageEdit from './views/Components/moneyTransfer/languages/EditForm.vue'
 
 //***** Currency *****
-import Currency from './views/Components/saleSystem/currency/Currency.vue'
-import CurrencyList from './views/Components/saleSystem/currency/CurrencyList.vue'
-import CurrencyForm from './views/Components/saleSystem/currency/MainForm.vue'
-import CurrencyEdit from './views/Components/saleSystem/currency/EditForm.vue'
+import Currency from './views/Components/moneyTransfer/currency/Currency.vue'
+import CurrencyList from './views/Components/moneyTransfer/currency/CurrencyList.vue'
+import CurrencyForm from './views/Components/moneyTransfer/currency/MainForm.vue'
+import CurrencyEdit from './views/Components/moneyTransfer/currency/EditForm.vue'
 
 //import router from './router'
 import VueResource from 'vue-resource'
@@ -81,6 +92,47 @@ const router = new VueRouter({
     { path: '/admin', name:'ahome',component: Home },
     { path: '/admin/list', name:'floo',component: List },
     { path: '/register', name:'foo',component: Register },
+    //Setup Master
+    {path:'/admin/account_rule',name:'AccountRule',component:AccountRule,
+        children:[
+            {
+                path:'list',
+                name:'AccountRuleList',
+                component:AccountRuleList
+            },
+            {
+                path:'add',
+                name:'AccountRuleForm',
+                component:AccountRuleForm
+            },
+            {
+                path:'edit/:id',
+                name:'AccountRuleEdit',
+                component:AccountRuleEdit,
+                props:true
+            }
+        ]       
+    },
+    {path:'/admin/account_type',name:'AccountType',component:AccountType,
+        children:[
+            {
+                path:'list',
+                name:'AccountTypeList',
+                component:AccountTypeList
+            },
+            {
+                path:'add',
+                name:'AccountTypeForm',
+                component:AccountTypeForm
+            },
+            {
+                path:'edit/:id',
+                name:'AccountTypeEdit',
+                component:AccountTypeEdit,
+                props:true
+            }
+        ]       
+    },
     //Setting
     {path:'/admin/settings',name:'settings',component:Setting,
         children:[
