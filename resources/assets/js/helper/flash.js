@@ -1,7 +1,24 @@
+import axios from 'axios'
 export default{
 	state: {
 		success: null,
-		error: null
+		elasticdata : '',
+		fetchInfo : '',
+		fetchStore : '',
+		error: null,
+		StateData:[]
+	},
+	setStateData(message){
+		this.state.StateData = message
+	},
+	setState(message){
+		this.state.elasticdata = message
+	},
+	fetchInformation(id){
+		axios.get('/api/information/'+id).then(response => this.state.fetchInfo=response.data)
+	},
+	fetchStore(data){
+		this.state.fetchStore = data
 	},
 	setSuccess(message){
 		this.state.success = message
@@ -10,7 +27,6 @@ export default{
 			this.removeSuccess() 
 		},3000)
 	},
-
 	setError(message){
 		this.state.error = message 
 		setTimeout(() => {

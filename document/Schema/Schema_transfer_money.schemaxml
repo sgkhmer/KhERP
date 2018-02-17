@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_unicode_ci">khexchange</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="sg_account" view="colnames">
+<left>534</left>
+<top>0</top>
+<width>170</width>
+<height>292</height>
+<sql_create_table>CREATE TABLE `sg_account` (
+  `account_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_type_id` int(3) DEFAULT NULL,
+  `account_master_id` int(11) DEFAULT NULL,
+  `transaction_rule_id` int(3) DEFAULT NULL,
+  `account_code` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `account_no` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `currency_id` int(4) DEFAULT NULL,
+  `is_default` tinyint(1) DEFAULT '0',
+  `is_active` tinyint(1) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `date_added` datetime DEFAULT NULL,
+  `date_modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`account_id`),
+  KEY `FK_sg_account_detail` (`account_master_id`),
+  KEY `FK_sg_account_info` (`currency_id`),
+  KEY `FK_sg_account_type` (`account_type_id`),
+  KEY `FK_sg_account` (`transaction_rule_id`),
+  CONSTRAINT `FK_sg_account` FOREIGN KEY (`transaction_rule_id`) REFERENCES `sg_transaction_rules` (`transaction_rule_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_detail` FOREIGN KEY (`account_master_id`) REFERENCES `sg_account_master` (`account_master_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_info` FOREIGN KEY (`currency_id`) REFERENCES `sg_currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_type` FOREIGN KEY (`account_type_id`) REFERENCES `sg_account_type` (`account_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_bank" view="colnames">
+<left>219</left>
+<top>9</top>
+<width>140</width>
+<height>265</height>
+<sql_create_table>CREATE TABLE `sg_account_bank` (
+  `account_id` int(11) DEFAULT NULL,
+  `bank_name` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `account_no` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `account_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expired_account` datetime DEFAULT NULL,
+  `contact1` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact2` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact3` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email1` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email2` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `merchant_id` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  KEY `FK_sg_account_bank` (`account_id`),
+  CONSTRAINT `FK_sg_account_bank` FOREIGN KEY (`account_id`) REFERENCES `sg_account_master` (`account_master_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_transfer" view="colnames">
+<left>843</left>
+<top>0</top>
+<width>199</width>
+<height>338</height>
+<sql_create_table>CREATE TABLE `sg_account_transfer` (
+  `account_transfer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `transfer_no` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `transfer_from_account_no` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `transfer_to_account_no` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `delivery_method` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `transfer_from_currency_id` int(5) DEFAULT NULL,
+  `transfer_to_currency_id` int(5) DEFAULT NULL,
+  `transfer_amount` float(10,4) NOT NULL,
+  `receiving_amount` float(10,4) NOT NULL,
+  `reference_no` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `transfer_date` datetime NOT NULL,
+  `transfer_fee` float(10,4) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `tax` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remark` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`account_transfer_id`),
+  KEY `FK_sg_account_transfer` (`transfer_from_account_no`),
+  KEY `FK_sg_account_transfers` (`delivery_method`),
+  KEY `FK_sg_account_transfer_to_account` (`transfer_to_account_no`),
+  KEY `FK_sg_account_transfer_from_currency` (`transfer_from_currency_id`),
+  KEY `FK_sg_account_transfer_to_currency` (`transfer_to_currency_id`),
+  CONSTRAINT `FK_sg_account_transfer_from_currency` FOREIGN KEY (`transfer_from_currency_id`) REFERENCES `sg_currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_transfer_to_currency` FOREIGN KEY (`transfer_to_currency_id`) REFERENCES `sg_currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_currency" view="colnames">
+<left>1099</left>
+<top>530</top>
+<width>127</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `sg_currency` (
+  `currency_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(32) NOT NULL,
+  `code` varchar(3) NOT NULL,
+  `symbol_left` varchar(12) NOT NULL,
+  `symbol_right` varchar(12) NOT NULL,
+  `decimal_place` char(1) NOT NULL,
+  `value` double(15,8) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`currency_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="sg_transaction_rules" view="colnames">
+<left>1329</left>
+<top>311</top>
+<width>159</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `sg_transaction_rules` (
+  `transaction_rule_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_group_id` int(5) DEFAULT NULL,
+  `country_id` int(5) DEFAULT NULL,
+  `rule_type_id` int(2) DEFAULT NULL,
+  `restrict_type_id` int(2) DEFAULT NULL,
+  `delivery_method_id` int(2) DEFAULT NULL,
+  `amount_limit` float(10,4) DEFAULT NULL,
+  `message` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`transaction_rule_id`),
+  KEY `FK_sg_transaction_rules` (`rule_type_id`),
+  KEY `FK_sg_transaction_rules_delivery` (`delivery_method_id`),
+  KEY `FK_sg_country` (`country_id`),
+  KEY `FK_sg_transaction_rules_type` (`restrict_type_id`),
+  CONSTRAINT `FK_sg_country` FOREIGN KEY (`country_id`) REFERENCES `sg_country` (`country_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_transaction_rules` FOREIGN KEY (`rule_type_id`) REFERENCES `sg_rule_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_transaction_rules_delivery` FOREIGN KEY (`delivery_method_id`) REFERENCES `sg_delivery_method` (`delivery_method_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_transaction_rules_type` FOREIGN KEY (`restrict_type_id`) REFERENCES `sg_restrict_type` (`restrict_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_rule_type" view="colnames">
+<left>1519</left>
+<top>76</top>
+<width>100</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_rule_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rule_type` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_country" view="colnames">
+<left>1269</left>
+<top>19</top>
+<width>152</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `sg_country` (
+  `country_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `iso_code_2` varchar(2) NOT NULL,
+  `iso_code_3` varchar(3) NOT NULL,
+  `address_format` text NOT NULL,
+  `postcode_required` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`country_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=258 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="sg_exchange_rate" view="colnames">
+<left>879</left>
+<top>859</top>
+<width>148</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `sg_exchange_rate` (
+  `exchange_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `from_currency_id` int(11) NOT NULL DEFAULT '1',
+  `to_currency_id` int(11) NOT NULL DEFAULT '1',
+  `rate` double NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`exchange_rate_id`),
+  KEY `FK_sg_exchange_rate_to_currency` (`to_currency_id`),
+  KEY `FK_sg_exchange_rate_from_currency` (`from_currency_id`),
+  CONSTRAINT `FK_sg_exchange_rate_from_currency` FOREIGN KEY (`from_currency_id`) REFERENCES `sg_currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_exchange_rate_to_currency` FOREIGN KEY (`to_currency_id`) REFERENCES `sg_currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_loan_product" view="colnames">
+<left>39</left>
+<top>219</top>
+<width>190</width>
+<height>265</height>
+<sql_create_table>CREATE TABLE `sg_loan_product` (
+  `loan_product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `principle_default_amount` float(10,4) DEFAULT NULL,
+  `principle_min_amount` float(10,4) DEFAULT NULL,
+  `principle_max_amount` float(10,4) DEFAULT NULL,
+  `term_period` int(4) DEFAULT NULL,
+  `term_day_id` int(4) DEFAULT NULL,
+  `payment_cycle_id` int(4) DEFAULT NULL,
+  `interest_rate_period_id` int(4) DEFAULT NULL,
+  `interest_method_id` int(4) DEFAULT NULL,
+  `account_rule_id` int(4) DEFAULT NULL,
+  PRIMARY KEY (`loan_product_id`),
+  KEY `FK_sg_loan_product_termday` (`term_day_id`),
+  KEY `FK_sg_loan_product_account_rule` (`account_rule_id`),
+  KEY `FK_sg_loan_product_payment_cycle` (`payment_cycle_id`),
+  KEY `FK_sg_loan_product_interest_rate_period` (`interest_rate_period_id`),
+  KEY `FK_sg_loan_product_interest_method` (`interest_method_id`),
+  CONSTRAINT `FK_sg_loan_product_account_rule` FOREIGN KEY (`account_rule_id`) REFERENCES `sg_account_rule` (`account_rule_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_loan_product_interest_method` FOREIGN KEY (`interest_method_id`) REFERENCES `sg_interest_method_id` (`interest_method_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_loan_product_interest_rate_period` FOREIGN KEY (`interest_rate_period_id`) REFERENCES `sg_interest_rate_period` (`interest_rate_period_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_loan_product_payment_cycle` FOREIGN KEY (`payment_cycle_id`) REFERENCES `sg_payment_cycle` (`payment_cycle_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_loan_product_termday` FOREIGN KEY (`term_day_id`) REFERENCES `sg_term_day` (`term_day_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_loan" view="colnames">
+<left>180</left>
+<top>579</top>
+<width>214</width>
+<height>389</height>
+<sql_create_table>CREATE TABLE `sg_account_loan` (
+  `account_loan_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_detail_id` int(11) DEFAULT NULL,
+  `loan_product_id` int(3) DEFAULT NULL,
+  `principle_amount` float(10,4) DEFAULT NULL,
+  `loan_duration` double DEFAULT NULL,
+  `term_day_id` int(3) DEFAULT NULL,
+  `payment_cycle_id` int(3) DEFAULT NULL,
+  `expected_disbursement_date` datetime DEFAULT NULL COMMENT 'Date Loan',
+  `interest_method_id` int(3) DEFAULT NULL,
+  `loan_interest` double DEFAULT NULL,
+  `grace_interest_charge` double DEFAULT NULL,
+  `loan_file` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loan_date` datetime DEFAULT NULL,
+  `approved_date` date DEFAULT NULL,
+  `request_date` date DEFAULT NULL,
+  `is_approved` tinyint(1) DEFAULT '0',
+  `status` int(2) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`account_loan_id`),
+  KEY `FK_sg_account_loan_detail` (`account_detail_id`),
+  KEY `FK_sg_account_loan_term_day` (`term_day_id`),
+  KEY `FK_sg_account_loan_payment_cycle` (`payment_cycle_id`),
+  KEY `FK_sg_account_loan_product_id` (`loan_product_id`),
+  CONSTRAINT `FK_sg_account_loan` FOREIGN KEY (`loan_product_id`) REFERENCES `sg_loan_product` (`loan_product_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_loan_detail` FOREIGN KEY (`account_detail_id`) REFERENCES `sg_account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_loan_payment_cycle` FOREIGN KEY (`payment_cycle_id`) REFERENCES `sg_payment_cycle` (`payment_cycle_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_loan_product_id` FOREIGN KEY (`loan_product_id`) REFERENCES `sg_loan_product` (`loan_product_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_loan_term_day` FOREIGN KEY (`term_day_id`) REFERENCES `sg_term_day` (`term_day_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_transaction" view="colnames">
+<left>1090</left>
+<top>289</top>
+<width>177</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `sg_account_transaction` (
+  `account_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_id` int(11) DEFAULT NULL,
+  `transaction_rule_id` int(4) DEFAULT NULL,
+  `transaction_no` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `req_amount` float(10,4) DEFAULT NULL,
+  `transaction_detail` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Transfer Success, or fail',
+  `transaction_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`account_transaction_id`),
+  KEY `FK_sg_account_transaction` (`account_id`),
+  KEY `FK_sg_account_transaction_rule` (`transaction_rule_id`),
+  CONSTRAINT `FK_sg_account_transaction` FOREIGN KEY (`account_id`) REFERENCES `sg_account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_master" view="colnames">
+<left>369</left>
+<top>69</top>
+<width>154</width>
+<height>522</height>
+<sql_create_table>CREATE TABLE `sg_account_master` (
+  `account_master_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `finger_print` tinyint(1) DEFAULT NULL,
+  `gender` char(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expired_account` datetime DEFAULT NULL,
+  `merchant_id` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact1` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact2` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `username` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `post_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `business` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT '0',
+  `address1` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address2` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `birth_place` longtext COLLATE utf8_unicode_ci,
+  `date_added` datetime DEFAULT NULL,
+  `date_modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`account_master_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_payment_cycle" view="colnames">
+<left>543</left>
+<top>606</top>
+<width>149</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_payment_cycle` (
+  `payment_cycle_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`payment_cycle_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_term_day" view="colnames">
+<left>529</left>
+<top>779</top>
+<width>118</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_term_day` (
+  `term_day_id` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`term_day_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_rule" view="colnames">
+<left>19</left>
+<top>500</top>
+<width>136</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_account_rule` (
+  `account_rule_id` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`account_rule_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_interest_rate_period" view="colnames">
+<left>0</left>
+<top>19</top>
+<width>179</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_interest_rate_period` (
+  `interest_rate_period_id` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`interest_rate_period_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_exchange_currency" view="colnames">
+<left>739</left>
+<top>336</top>
+<width>209</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `sg_account_exchange_currency` (
+  `account_id` int(11) DEFAULT NULL,
+  `exchange_from_currency_id` int(4) DEFAULT NULL,
+  `exchange_to_currency_id` int(4) DEFAULT NULL,
+  `exchange_amount` float(10,4) DEFAULT NULL,
+  `rate` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `exchange_date` datetime DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL COMMENT 'success or fail exchange',
+  KEY `FK_sg_account_exchange_currency` (`exchange_from_currency_id`),
+  KEY `FK_sg_account_exchange_to_currency` (`exchange_to_currency_id`),
+  CONSTRAINT `FK_sg_account_exchange_currency` FOREIGN KEY (`exchange_from_currency_id`) REFERENCES `sg_currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_exchange_to_currency` FOREIGN KEY (`exchange_to_currency_id`) REFERENCES `sg_currency` (`currency_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_delivery_method" view="colnames">
+<left>1483</left>
+<top>566</top>
+<width>159</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `sg_delivery_method` (
+  `delivery_method_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` int(4) DEFAULT NULL,
+  `modified_by` int(4) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`delivery_method_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_deposit" view="colnames">
+<left>1099</left>
+<top>19</top>
+<width>155</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `sg_account_deposit` (
+  `account_deposit_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_id` int(11) DEFAULT NULL,
+  `deposit_date` datetime DEFAULT NULL,
+  `deposit_amount` float(10,4) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL COMMENT 'Deposit Soccess or fail',
+  `is_active` tinyint(1) DEFAULT '0' COMMENT '1 Deposit Success',
+  `deposit_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`account_deposit_id`),
+  KEY `FK_sg_account_deposit` (`account_id`),
+  CONSTRAINT `FK_sg_account_deposit` FOREIGN KEY (`account_id`) REFERENCES `sg_account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_restrict_type" view="colnames">
+<left>1599</left>
+<top>340</top>
+<width>135</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_restrict_type` (
+  `restrict_type_id` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`restrict_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_type" view="colnames">
+<left>712</left>
+<top>212</top>
+<width>139</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_account_type` (
+  `account_type_id` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`account_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_send_money" view="colnames">
+<left>796</left>
+<top>533</top>
+<width>180</width>
+<height>299</height>
+<sql_create_table>CREATE TABLE `sg_account_send_money` (
+  `account_id` int(11) DEFAULT NULL,
+  `delivery_method_id` int(3) DEFAULT NULL,
+  `exchange_rate` float(10,4) DEFAULT NULL,
+  `sending_currency` char(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sending_amount` float(10,4) DEFAULT NULL,
+  `receiving_currency` char(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `receiving_amount` float(10,4) DEFAULT NULL,
+  `receiving_contact` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `receiving_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `receiving_date` datetime DEFAULT NULL,
+  `is_received` tinyint(4) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `remark` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  KEY `FK_sg_account_send_money` (`account_id`),
+  KEY `FK_sg_account_send_money_delivery_method` (`delivery_method_id`),
+  CONSTRAINT `FK_sg_account_send_money` FOREIGN KEY (`account_id`) REFERENCES `sg_account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_sg_account_send_money_delivery_method` FOREIGN KEY (`delivery_method_id`) REFERENCES `sg_delivery_method` (`delivery_method_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_interest_method_id" view="colnames">
+<left>0</left>
+<top>651</top>
+<width>156</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `sg_interest_method_id` (
+  `interest_method_id` int(3) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `minimun_cash` float(10,4) DEFAULT NULL,
+  `maxinum_cash` float(10,4) DEFAULT NULL,
+  `fix_charge` float(10,4) DEFAULT NULL,
+  `percentage` int(11) DEFAULT NULL,
+  `processing_period` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `term_day_id` int(3) DEFAULT NULL,
+  PRIMARY KEY (`interest_method_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_withdraw" view="colnames">
+<left>536</left>
+<top>309</top>
+<width>139</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `sg_account_withdraw` (
+  `account_id` int(11) NOT NULL,
+  `merchant_name` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `currency` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `request_amount` float(10,4) NOT NULL,
+  `requested_date` datetime NOT NULL,
+  `approved_date` datetime NOT NULL,
+  `status` int(3) NOT NULL,
+  `remark` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  KEY `FK_sg_account_withdraw` (`account_id`),
+  CONSTRAINT `FK_sg_account_withdraw` FOREIGN KEY (`account_id`) REFERENCES `sg_account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_payee" view="colnames">
+<left>1633</left>
+<top>154</top>
+<width>154</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `sg_account_payee` (
+  `account_id` int(11) NOT NULL,
+  `account_payee_no` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `payee_nick_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `daily_limit_amount` float(10,4) NOT NULL,
+  `date_added` datetime DEFAULT NULL,
+  `date_modified` datetime DEFAULT NULL,
+  KEY `FK_sg_account_payee` (`account_id`),
+  CONSTRAINT `FK_sg_account_payee` FOREIGN KEY (`account_id`) REFERENCES `sg_account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_account_mobile_log" view="colnames">
+<left>666</left>
+<top>864</top>
+<width>176</width>
+<height>163</height>
+<sql_create_table>CREATE TABLE `sg_account_mobile_log` (
+  `account_mobile_log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_no` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `device_token` longtext COLLATE utf8_unicode_ci,
+  `ip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remark` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`account_mobile_log_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_amount_top_up" view="colnames">
+<left>401</left>
+<top>1014</top>
+<width>152</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_amount_top_up` (
+  `amount_top_up_id` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`amount_top_up_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_booking" view="colnames">
+<left>567</left>
+<top>1014</top>
+<width>123</width>
+<height>282</height>
+<sql_create_table>CREATE TABLE `sg_booking` (
+  `booking_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_no` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `booking_type` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `origin` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `destincation` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sector` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `booking_date` datetime DEFAULT NULL,
+  `fly_date` date DEFAULT NULL,
+  `fly_time` time DEFAULT NULL,
+  `return_date` date DEFAULT NULL,
+  `return_time` time DEFAULT NULL,
+  `status` int(3) DEFAULT NULL,
+  PRIMARY KEY (`booking_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_booking_type" view="colnames">
+<left>248</left>
+<top>1013</top>
+<width>139</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `sg_booking_type` (
+  `booking_type` int(2) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`booking_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+<table name="sg_buy_voucher" view="colnames">
+<left>87</left>
+<top>1012</top>
+<width>145</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `sg_buy_voucher` (
+  `buy_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
+  `from_account_no` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `amount_top_up` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `pay_to_voucher` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `transfer_date` date NOT NULL,
+  `message` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`buy_voucher_id`),
+  UNIQUE KEY `buy_card_id` (`buy_voucher_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
