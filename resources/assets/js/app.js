@@ -12,43 +12,43 @@ import CreateForm from './views/Auth/Form.vue'
 import App from './App.vue'
 import Appl from './Appl.vue'
 //setting########################
-import Setting from './views/Components/backend/settings/Setting.vue'
-import SettingForm from './views/Components/backend/settings/MainForm.vue'
-import SettingList from './views/Components/backend/settings/SettingList.vue'
-import SettingEditForm from './views/Components/backend/settings/EditForm.vue'
+import Setting from './views/Components/saleSystem/settings/Setting.vue'
+import SettingForm from './views/Components/saleSystem/settings/MainForm.vue'
+import SettingList from './views/Components/saleSystem/settings/SettingList.vue'
+import SettingEditForm from './views/Components/saleSystem/settings/EditForm.vue'
 //end setting####################
 
 //User and user Group########################
-import User from './views/Components/backend/users/User.vue'
-import UserForm from './views/Components/backend/users/MainForm.vue'
-import UserList from './views/Components/backend/users/UserList.vue'
-import UserEditForm from './views/Components/backend/users/UserEditForm.vue'
+import User from './views/Components/saleSystem/users/User.vue'
+import UserForm from './views/Components/saleSystem/users/MainForm.vue'
+import UserList from './views/Components/saleSystem/users/UserList.vue'
+import UserEditForm from './views/Components/saleSystem/users/UserEditForm.vue'
 
 //User group#########################
-import UserGroup from './views/Components/backend/user_groups/UserGroup.vue'
-import UserGroupForm from './views/Components/backend/user_groups/MainForm.vue'
-import UserGroupList from './views/Components/backend/user_groups/UserGroupList.vue'
-import UserGroupEditForm from './views/Components/backend/user_groups/UserGroupEditForm.vue'
+import UserGroup from './views/Components/saleSystem/user_groups/UserGroup.vue'
+import UserGroupForm from './views/Components/saleSystem/user_groups/MainForm.vue'
+import UserGroupList from './views/Components/saleSystem/user_groups/UserGroupList.vue'
+import UserGroupEditForm from './views/Components/saleSystem/user_groups/UserGroupEditForm.vue'
 //User Role#########################
-import UserRole from './views/Components/backend/users/UserRole.vue'
-import UserRoleList from './views/Components/backend/users/UserRoleList.vue'
-import UserRoleForm from './views/Components/backend/users/UserRoleForm.vue'
-import UserRoleEdit from './views/Components/backend/users/UserRoleEdit.vue'
-import UserRolePermission from './views/Components/backend/users/UserRolePermission.vue'
+import UserRole from './views/Components/saleSystem/users/UserRole.vue'
+import UserRoleList from './views/Components/saleSystem/users/UserRoleList.vue'
+import UserRoleForm from './views/Components/saleSystem/users/UserRoleForm.vue'
+import UserRoleEdit from './views/Components/saleSystem/users/UserRoleEdit.vue'
+import UserRolePermission from './views/Components/saleSystem/users/UserRolePermission.vue'
 
 //End User Group####################
 
 //***** Language *****
-import Language from './views/Components/backend/languages/Language.vue'
-import LanguageList from './views/Components/backend/languages/LanguageList.vue'
-import LanguageForm from './views/Components/backend/languages/MainForm.vue'
-import LanguageEdit from './views/Components/backend/languages/EditForm.vue'
+import Language from './views/Components/saleSystem/languages/Language.vue'
+import LanguageList from './views/Components/saleSystem/languages/LanguageList.vue'
+import LanguageForm from './views/Components/saleSystem/languages/MainForm.vue'
+import LanguageEdit from './views/Components/saleSystem/languages/EditForm.vue'
 
 //***** Currency *****
-import Currency from './views/Components/backend/currency/Currency.vue'
-import CurrencyList from './views/Components/backend/currency/CurrencyList.vue'
-import CurrencyForm from './views/Components/backend/currency/MainForm.vue'
-import CurrencyEdit from './views/Components/backend/currency/EditForm.vue'
+import Currency from './views/Components/saleSystem/currency/Currency.vue'
+import CurrencyList from './views/Components/saleSystem/currency/CurrencyList.vue'
+import CurrencyForm from './views/Components/saleSystem/currency/MainForm.vue'
+import CurrencyEdit from './views/Components/saleSystem/currency/EditForm.vue'
 
 //import router from './router'
 import VueResource from 'vue-resource'
