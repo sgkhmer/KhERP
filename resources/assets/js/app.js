@@ -277,11 +277,11 @@ const app = new Vue({
   components: { App },
 }).$mount('#root')
 
-const AuthLogin = new Vue({
-  // el: '#root',
-  router,
-  template: `
-  <appl></appl>
-`,
-  components: { Appl },
-}).$mount('#root_login')
+// const AuthLogin = new Vue({
+//   // el: '#root',
+//   router,
+//   template: `
+//   <appl></appl>
+// `,
+//   components: { Appl },
+// }).$mount('#root_login')

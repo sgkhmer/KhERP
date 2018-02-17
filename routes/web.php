@@ -65,7 +65,10 @@ if (Request::is('api*')){
     })->name('login');
 }else if(Request::is('auth*')){
     Route::post('auth/login', 'Auth\LoginController@login');
-    Route::get('auth/login', 'Auth\LoginController@showLoginForm');
+    Route::get('auth/login',function(){
+        return view('index');
+    });
+    // Route::get('auth/login', 'Auth\LoginController@showLoginForm');
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
     Route::get('auth/logout', function()

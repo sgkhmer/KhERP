@@ -1115,11 +1115,11 @@ CREATE TABLE `sg_group_role_detail` (
   `read` int(1) unsigned zerofill DEFAULT '0',
   `write` int(1) unsigned zerofill DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `sg_group_role_detail` */
 
-insert  into `sg_group_role_detail`(`id`,`group_role_id`,`menu_code`,`parent_menu_id`,`menu_id`,`read`,`write`) values (1,1,'m1',0,1,1,1),(2,1,'m2',0,2,1,1),(3,1,'m3',0,3,1,1),(4,1,'s1',2,4,1,1),(5,1,'m4',0,5,1,1),(6,1,'m5',0,6,1,1),(7,1,'m6',0,7,1,1),(8,1,'s2',7,8,1,1),(9,1,'s3',7,9,1,1),(10,1,'s4',5,10,1,1);
+insert  into `sg_group_role_detail`(`id`,`group_role_id`,`menu_code`,`parent_menu_id`,`menu_id`,`read`,`write`) values (1,1,'m1',0,1,1,1),(2,1,'m2',0,2,1,1),(3,1,'m3',0,3,1,1),(4,1,'s1',2,4,1,1),(5,1,'m4',0,5,1,1),(6,1,'m5',0,6,1,1),(7,1,'m6',0,7,1,1),(8,1,'s2',7,8,1,1),(9,1,'s3',7,9,1,1),(10,1,'s4',5,10,1,1),(11,1,'s5',2,11,1,1);
 
 /*Table structure for table `sg_information` */
 
@@ -1414,11 +1414,11 @@ CREATE TABLE `sg_menu` (
   `created_date` datetime DEFAULT NULL,
   `modified_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sg_menu` */
 
-insert  into `sg_menu`(`id`,`fa_icon`,`parent_id`,`menu_type_id`,`menu_link`,`menu_code`,`default`,`url`,`ordering`,`is_active`,`created_date`,`modified_date`) values (1,'dvr',0,1,'/admin','m1',0,NULL,1,1,NULL,NULL),(2,'dvr',0,1,'/admin','m2',0,NULL,6,1,NULL,NULL),(3,'dvr',0,1,'/admin','m3',0,NULL,2,1,NULL,NULL),(4,'',2,1,'/admin','s1',0,NULL,1,1,NULL,NULL),(5,'dvr',0,1,'/admin/merchant_account','m4',0,NULL,3,1,NULL,NULL),(6,'dvr',0,1,'/admin/loan_management','m5',0,NULL,4,1,NULL,NULL),(7,'dvr',0,1,'/admin/voucher','m6',0,NULL,5,1,NULL,NULL),(8,NULL,7,1,'/admin/voucher/operator','s2',0,NULL,1,1,NULL,NULL),(9,NULL,7,1,'/admin/voucher/voIP','s3',0,NULL,2,1,NULL,NULL),(10,NULL,5,1,'/admin/merchant_account/account_master','s4',0,NULL,1,1,NULL,NULL);
+insert  into `sg_menu`(`id`,`fa_icon`,`parent_id`,`menu_type_id`,`menu_link`,`menu_code`,`default`,`url`,`ordering`,`is_active`,`created_date`,`modified_date`) values (1,'dvr',0,1,'/admin','m1',0,NULL,1,1,NULL,NULL),(2,'dvr',0,1,'/admin','m2',0,NULL,6,1,NULL,NULL),(3,'dvr',0,1,'/admin','m3',0,NULL,2,1,NULL,NULL),(4,'',2,1,'/admin/account_rule/list','s1',0,NULL,1,1,NULL,NULL),(5,'dvr',0,1,'/admin/merchant_account','m4',0,NULL,3,1,NULL,NULL),(6,'dvr',0,1,'/admin/loan_management','m5',0,NULL,4,1,NULL,NULL),(7,'dvr',0,1,'/admin/voucher','m6',0,NULL,5,1,NULL,NULL),(8,NULL,7,1,'/admin/voucher/operator','s2',0,NULL,1,1,NULL,NULL),(9,NULL,7,1,'/admin/voucher/voIP','s3',0,NULL,2,1,NULL,NULL),(10,NULL,5,1,'/admin/merchant_account/account_master','s4',0,NULL,1,1,NULL,NULL),(11,NULL,2,1,'/admin/account_type/list','s5',0,NULL,2,1,NULL,NULL);
 
 /*Table structure for table `sg_menu_description` */
 
@@ -1432,11 +1432,11 @@ CREATE TABLE `sg_menu_description` (
   `meta_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_keywords` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sg_menu_description` */
 
-insert  into `sg_menu_description`(`id`,`menu_id`,`language_id`,`name`,`meta_description`,`meta_keywords`) values (1,1,1,'Home',NULL,NULL),(2,2,1,'Setup Master',NULL,NULL),(3,3,1,'User',NULL,NULL),(4,4,1,'Account Rule',NULL,NULL),(5,5,1,'Merchant Account',NULL,NULL),(6,6,1,'Account Loan',NULL,NULL),(7,7,1,'Vouchers',NULL,NULL),(8,8,1,'Operators',NULL,NULL),(9,9,1,'voIP',NULL,NULL),(10,10,1,'Account Master',NULL,NULL);
+insert  into `sg_menu_description`(`id`,`menu_id`,`language_id`,`name`,`meta_description`,`meta_keywords`) values (1,1,1,'Home',NULL,NULL),(2,2,1,'Setup Master',NULL,NULL),(3,3,1,'User',NULL,NULL),(4,4,1,'Account Rule',NULL,NULL),(5,5,1,'Merchant Account',NULL,NULL),(6,6,1,'Account Loan',NULL,NULL),(7,7,1,'Vouchers',NULL,NULL),(8,8,1,'Operators',NULL,NULL),(9,9,1,'voIP',NULL,NULL),(10,10,1,'Account Master',NULL,NULL),(11,11,1,'Account Type',NULL,NULL);
 
 /*Table structure for table `sg_menu_type` */
 
@@ -2108,7 +2108,7 @@ CREATE TABLE `sg_users` (
 
 /*Data for the table `sg_users` */
 
-insert  into `sg_users`(`id`,`user_group_id`,`firstname`,`lastname`,`gender`,`dob`,`company`,`website`,`owner`,`address_1`,`address_2`,`username`,`email`,`email_2`,`password`,`telephone_1`,`telephone_2`,`country`,`province`,`city`,`code`,`image`,`status`,`remember_token`,`date_added`,`updated_at`) values (1,1,'sinet','sim','mal',NULL,'Bakoue','website','Bakou','address		','address','admin','admin@admin.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIy','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','122',NULL,1,'rRDODmeYmjRpS38fPAwy0x4C3T0HYuzy8RYqjIfUqc4TSjR3Baf3iRr7pMj1','2017-02-02 00:00:00',NULL),(3,5,'taobao','taobao','mal',NULL,'Taobao','taobao.com','Taobao','address		','address','admin','info@taobao1.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIyss','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','111',NULL,1,'Jn7bu55rX4AlZQy4jlrBc8gnbjcX1qARghm4YRpRZ8TU0dqAJdkMtfDc2KVF','2017-02-02 00:00:00',NULL),(4,5,'bakou','bakou','mal',NULL,'Bakou System','bakousystem.com','Bakou','address		','address','admin','info@taobao2.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIyss','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','222',NULL,1,'Jn7bu55rX4AlZQy4jlrBc8gnbjcX1qARghm4YRpRZ8TU0dqAJdkMtfDc2KVF','2017-02-02 00:00:00',NULL),(5,4,'courier','courier','mal',NULL,'Bakou System','bakousystem.com','Bakou','address		','address','admin','info@taobao3.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIyss','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','222',NULL,1,'Jn7bu55rX4AlZQy4jlrBc8gnbjcX1qARghm4YRpRZ8TU0dqAJdkMtfDc2KVF','2017-02-02 00:00:00',NULL);
+insert  into `sg_users`(`id`,`user_group_id`,`firstname`,`lastname`,`gender`,`dob`,`company`,`website`,`owner`,`address_1`,`address_2`,`username`,`email`,`email_2`,`password`,`telephone_1`,`telephone_2`,`country`,`province`,`city`,`code`,`image`,`status`,`remember_token`,`date_added`,`updated_at`) values (1,1,'sinet','sim','mal',NULL,'Bakoue','website','Bakou','address		','address','admin','admin@admin.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIy','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','122',NULL,1,'QclZFusA5SWuSf0WlMAe4XlVcVa0PeNf5r63MHeAR7KcNQAPmxHM3BJNk168','2017-02-02 00:00:00',NULL),(3,5,'taobao','taobao','mal',NULL,'Taobao','taobao.com','Taobao','address		','address','admin','info@taobao1.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIyss','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','111',NULL,1,'Jn7bu55rX4AlZQy4jlrBc8gnbjcX1qARghm4YRpRZ8TU0dqAJdkMtfDc2KVF','2017-02-02 00:00:00',NULL),(4,5,'bakou','bakou','mal',NULL,'Bakou System','bakousystem.com','Bakou','address		','address','admin','info@taobao2.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIyss','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','222',NULL,1,'Jn7bu55rX4AlZQy4jlrBc8gnbjcX1qARghm4YRpRZ8TU0dqAJdkMtfDc2KVF','2017-02-02 00:00:00',NULL),(5,4,'courier','courier','mal',NULL,'Bakou System','bakousystem.com','Bakou','address		','address','admin','info@taobao3.com',NULL,'$2y$10$flAZmP7ClUp0gG54aYNzNutHgSlMSLyACRg.NVtRpqDfjLouJICIyss','012 222 222','012 222 222','Cambodia','Kompong Speu','Phnom Pneh','222',NULL,1,'Jn7bu55rX4AlZQy4jlrBc8gnbjcX1qARghm4YRpRZ8TU0dqAJdkMtfDc2KVF','2017-02-02 00:00:00',NULL);
 
 /*Table structure for table `sg_voucher` */
 
