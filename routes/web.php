@@ -49,6 +49,18 @@ if (Request::is('api*')){
                 Route::resource('products', 'MoneyTransfer\Products\ProductsController');
                 Route::get('/getManufacturers','MoneyTransfer\Manufacturers\ManufacturersController@getManufacturers');
                 Route::get('/getMenus', 'MoneyTransfer\Settings\GroupRolesController@index');
+                //=====Setup Master API=============================
+                Route::resource('account_rule','MoneyTransfer\SetupMaster\AccountRuleController');
+                Route::resource('account_type','MoneyTransfer\SetupMaster\AccountTypeController');
+                Route::resource('amount_top_up','MoneyTransfer\SetupMaster\AmountTopUpController');
+                Route::resource('booking_type','MoneyTransfer\SetupMaster\BookingTypeController');
+                Route::resource('country','MoneyTransfer\SetupMaster\CountryController');
+                Route::resource('currencies','MoneyTransfer\SetupMaster\CurrenciesController');
+                Route::resource('delivery_method','MoneyTransfer\SetupMaster\DeliveryMethodController');
+                Route::resource('interest_rate_period','MoneyTransfer\SetupMaster\InterestRatePeriodController');
+                Route::resource('payment_cycle','MoneyTransfer\SetupMaster\PaymentCycleController');
+                Route::resource('term_day','MoneyTransfer\SetupMaster\TermDayController');
+                Route::resource('voucher','MoneyTransfer\SetupMaster\VoucherController');
             // });
 
         // }else{
@@ -65,11 +77,10 @@ if (Request::is('api*')){
     })->name('login');
 }else if(Request::is('auth*')){
     Route::post('auth/login', 'Auth\LoginController@login');
+//    Route::get('auth/logout', 'Auth\AuthController@getLogout');
     Route::get('auth/login',function(){
         return view('index');
     });
-    // Route::get('auth/login', 'Auth\LoginController@showLoginForm');
-    Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
     Route::get('auth/logout', function()
     {

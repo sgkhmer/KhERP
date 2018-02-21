@@ -18,7 +18,7 @@
 	    	v-bind:url="url"
     		v-bind:btn-new-url="btnNewUrl"
 	    	v-on:change="fetchData"
-	    	v-bind:del="false"
+	    	v-bind:del="true"
 	    	v-bind:eye="false">
 	    </data-table>
 
@@ -39,13 +39,13 @@
 		],
 		data(){
 			return{
-				url:'/api/attribute/',
+				url:'/api/account_type/',
 				btnNewUrl:'/admin/account_type/add',
 				listTitle:'Account Type List',
 				headers: [
-			        { text: 'ID',align: 'left',class:'text-xs-left',value: 'account_type_id'},
-			        { text: 'Account Type Name',align:'left',class:'text-xs-left', value: 'name' },
-			        {text: 'Action',align:'center',class:'text-xs-center',value:'attribute_id',status:'status',sortable: false}
+			        { text: 'AccountType ID',align: 'left',class:'text-xs-left',value: 'account_type_id'},
+			        { text: 'Account Type',align:'left',class:'text-xs-left', value: 'name' },
+			        {text: 'Action',align:'center',class:'text-xs-center',value:'account_type_id',status:'status',sortable: false}
 			    ],
 				attribute:[],
 				breadcrumbTitle:'Account Type List',
@@ -68,7 +68,7 @@
 		components:{'dataTable':dataTable,'breadcrumb1btn':breadcrumb1btn},
 		created(){
 			this.fetchData()
-			document.title = 'Account Rule List';
+			document.title = 'Account Type List';
 		},
 		methods:{
 			fetchData(){

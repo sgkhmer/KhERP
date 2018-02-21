@@ -56,8 +56,8 @@
     <script type="text/javascript" src="/js/scripts/dashboard-analytics.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="/js/custom-script.js"></script>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/vuetify.js"></script>
     <!-- <script>
         new Vue({ el: '#root' })
     </script> -->

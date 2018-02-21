@@ -39,23 +39,23 @@
 		],
 		data(){
 			return{
-				url:'/api/account_rule/',
-				btnNewUrl:'/admin/account_rule/add',
-				listTitle:'Account Rule List',
+				url:'/api/amount_top_up/',
+				btnNewUrl:'/admin/amount_top_up/add',
+				listTitle:'Amount Topup List',
 				headers: [
-			        { text: 'AccountRule ID',align: 'left',class:'text-xs-left',value: 'account_rule_id'},
-			        { text: 'Account Name',align:'left',class:'text-xs-left', value: 'name' },
-			        {text: 'Action',align:'center',class:'text-xs-center',value:'account_rule_id',status:'status',sortable: false}
+			        { text: 'AmountTopup ID',align: 'left',class:'text-xs-left',value: 'amount_top_up_id'},
+			        { text: 'Amount Topup',align:'left',class:'text-xs-left', value: 'name' },
+			        {text: 'Action',align:'center',class:'text-xs-center',value:'amount_top_up_id',status:'status',sortable: false}
 			    ],
 				attribute:[],
-				breadcrumbTitle:'Account Rule List',
+				breadcrumbTitle:'Amount Topup List',
 				breadcrumbs: [
 			        {
 			          text: 'Home',
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Amount Topup',
 			          disabled: false
 			        },
 			        {
@@ -68,7 +68,7 @@
 		components:{'dataTable':dataTable,'breadcrumb1btn':breadcrumb1btn},
 		created(){
 			this.fetchData()
-			document.title = 'Account Rule List';
+			document.title = 'Amount Topup List';
 		},
 		methods:{
 			fetchData(){

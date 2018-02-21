@@ -39,23 +39,28 @@
 		],
 		data(){
 			return{
-				url:'/api/account_rule/',
-				btnNewUrl:'/admin/account_rule/add',
-				listTitle:'Account Rule List',
+				url:'/api/country/',
+				btnNewUrl:'/admin/country/add',
+				listTitle:'Country List',
 				headers: [
-			        { text: 'AccountRule ID',align: 'left',class:'text-xs-left',value: 'account_rule_id'},
-			        { text: 'Account Name',align:'left',class:'text-xs-left', value: 'name' },
-			        {text: 'Action',align:'center',class:'text-xs-center',value:'account_rule_id',status:'status',sortable: false}
+			        { text: 'Country ID',align: 'left',class:'text-xs-left',value: 'country_id'},
+			        { text: 'Country Name',align:'left',class:'text-xs-left', value: 'name' },
+			        { text: 'Iso Code 2',align:'left',class:'text-xs-left', value: 'iso_code_2' },
+			        { text: 'Iso Code 3',align:'left',class:'text-xs-left', value: 'iso_code_3' },
+			        { text: 'Address Format',align:'left',class:'text-xs-left', value: 'address_format' },
+			        { text: 'Postcode Required',align:'left',class:'text-xs-left', value: 'postcode_required' },
+			        { text: 'Status',align:'left',class:'text-xs-left', value: 'status' },
+			        {text: 'Action',align:'center',class:'text-xs-center',value:'country_id',status:'status',sortable: false}
 			    ],
 				attribute:[],
-				breadcrumbTitle:'Account Rule List',
+				breadcrumbTitle:'Country List',
 				breadcrumbs: [
 			        {
 			          text: 'Home',
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Country',
 			          disabled: false
 			        },
 			        {
@@ -68,7 +73,7 @@
 		components:{'dataTable':dataTable,'breadcrumb1btn':breadcrumb1btn},
 		created(){
 			this.fetchData()
-			document.title = 'Account Rule List';
+			document.title = 'Country List';
 		},
 		methods:{
 			fetchData(){

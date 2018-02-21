@@ -39,23 +39,30 @@
 		],
 		data(){
 			return{
-				url:'/api/account_rule/',
-				btnNewUrl:'/admin/account_rule/add',
-				listTitle:'Account Rule List',
+				url:'/api/currencies/',
+				btnNewUrl:'/admin/currencies/add',
+				listTitle:'Currency List',
 				headers: [
-			        { text: 'AccountRule ID',align: 'left',class:'text-xs-left',value: 'account_rule_id'},
-			        { text: 'Account Name',align:'left',class:'text-xs-left', value: 'name' },
-			        {text: 'Action',align:'center',class:'text-xs-center',value:'account_rule_id',status:'status',sortable: false}
+			         { text: 'Currency ID',align: 'left',class:'text-xs-left',value: 'currency_id'},
+			        { text: 'Title',align:'left',class:'text-xs-left', value: 'title' },
+			        { text: 'code',align:'left',class:'text-xs-left', value: 'code' },
+			        { text: 'Symbol Left',align:'left',class:'text-xs-left', value: 'symbol_left' },
+			        { text: 'Symbol Right',align:'left',class:'text-xs-left', value: 'symbol_right' },
+			        { text: 'Decimal Place',align:'left',class:'text-xs-left', value: 'decimal_place' },
+			        { text: 'Value',align:'left',class:'text-xs-left', value: 'value' },
+			        { text: 'Status',align:'left',class:'text-xs-left', value: 'status' },
+			        { text: 'Date Modified',align:'left',class:'text-xs-left', value: 'date_modified' },
+			        {text: 'Action',align:'center',class:'text-xs-center',value:'currency_id',sortable: false}
 			    ],
 				attribute:[],
-				breadcrumbTitle:'Account Rule List',
+				breadcrumbTitle:'Currency List',
 				breadcrumbs: [
 			        {
 			          text: 'Home',
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Currency',
 			          disabled: false
 			        },
 			        {
@@ -68,7 +75,7 @@
 		components:{'dataTable':dataTable,'breadcrumb1btn':breadcrumb1btn},
 		created(){
 			this.fetchData()
-			document.title = 'Account Rule List';
+			document.title = 'Currency List';
 		},
 		methods:{
 			fetchData(){

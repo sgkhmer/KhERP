@@ -23,7 +23,7 @@
 		},
 		data(){
 			return{
-				url:'/api/account_type/',
+				url:'/api/term_day/',
 				e1:true,
 				valid: true,
 			    group:[
@@ -49,7 +49,7 @@
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Term Day',
 			          disabled: false
 			        },
 			        {
@@ -57,7 +57,7 @@
 			          disabled: true
 			        }
 			    ],
-			    backUrl:'/admin/account_type/list',
+			    backUrl:'/admin/term_day/list',
 			}
 		},
 		methods:{

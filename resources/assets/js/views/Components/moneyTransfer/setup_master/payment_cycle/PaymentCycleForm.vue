@@ -23,7 +23,7 @@
 		},
 		data(){
 			return{
-				url:'/api/account_type/',
+				url:'/api/payment_cycle/',
 				e1:true,
 				valid: true,
 			    group:[
@@ -49,7 +49,7 @@
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Payment Cycle',
 			          disabled: false
 			        },
 			        {
@@ -57,7 +57,7 @@
 			          disabled: true
 			        }
 			    ],
-			    backUrl:'/admin/account_type/list',
+			    backUrl:'/admin/payment_cycle/list',
 			}
 		},
 		methods:{

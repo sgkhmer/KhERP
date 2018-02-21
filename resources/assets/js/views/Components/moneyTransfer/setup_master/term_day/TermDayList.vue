@@ -39,23 +39,23 @@
 		],
 		data(){
 			return{
-				url:'/api/account_rule/',
-				btnNewUrl:'/admin/account_rule/add',
-				listTitle:'Account Rule List',
+				url:'/api/term_day/',
+				btnNewUrl:'/admin/term_day/add',
+				listTitle:'Term Day List',
 				headers: [
-			        { text: 'AccountRule ID',align: 'left',class:'text-xs-left',value: 'account_rule_id'},
-			        { text: 'Account Name',align:'left',class:'text-xs-left', value: 'name' },
-			        {text: 'Action',align:'center',class:'text-xs-center',value:'account_rule_id',status:'status',sortable: false}
+			        { text: 'TermDay ID',align: 'left',class:'text-xs-left',value: 'term_day_id'},
+			        { text: 'Name',align:'left',class:'text-xs-left', value: 'name' },
+			        {text: 'Action',align:'center',class:'text-xs-center',value:'term_day_id',status:'status',sortable: false}
 			    ],
 				attribute:[],
-				breadcrumbTitle:'Account Rule List',
+				breadcrumbTitle:'Term Day List',
 				breadcrumbs: [
 			        {
 			          text: 'Home',
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Term Day',
 			          disabled: false
 			        },
 			        {
@@ -68,7 +68,7 @@
 		components:{'dataTable':dataTable,'breadcrumb1btn':breadcrumb1btn},
 		created(){
 			this.fetchData()
-			document.title = 'Account Rule List';
+			document.title = 'Term Day List';
 		},
 		methods:{
 			fetchData(){

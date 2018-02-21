@@ -39,23 +39,23 @@
 		],
 		data(){
 			return{
-				url:'/api/account_rule/',
-				btnNewUrl:'/admin/account_rule/add',
-				listTitle:'Account Rule List',
+				url:'/api/interest_rate_period/',
+				btnNewUrl:'/admin/interest_rate_period/add',
+				listTitle:'Interest Rate Period List',
 				headers: [
-			        { text: 'AccountRule ID',align: 'left',class:'text-xs-left',value: 'account_rule_id'},
-			        { text: 'Account Name',align:'left',class:'text-xs-left', value: 'name' },
-			        {text: 'Action',align:'center',class:'text-xs-center',value:'account_rule_id',status:'status',sortable: false}
+			        { text: 'InterestRatePeriod ID',align: 'left',class:'text-xs-left',value: 'interest_rate_period_id'},
+			        { text: 'Name',align:'left',class:'text-xs-left', value: 'name' },
+			        {text: 'Action',align:'center',class:'text-xs-center',value:'interest_rate_period_id',status:'status',sortable: false}
 			    ],
 				attribute:[],
-				breadcrumbTitle:'Account Rule List',
+				breadcrumbTitle:'Interest Rate Period List',
 				breadcrumbs: [
 			        {
 			          text: 'Home',
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Interest Rate Period',
 			          disabled: false
 			        },
 			        {
@@ -68,7 +68,7 @@
 		components:{'dataTable':dataTable,'breadcrumb1btn':breadcrumb1btn},
 		created(){
 			this.fetchData()
-			document.title = 'Account Rule List';
+			document.title = 'Intterest Rate Period List';
 		},
 		methods:{
 			fetchData(){

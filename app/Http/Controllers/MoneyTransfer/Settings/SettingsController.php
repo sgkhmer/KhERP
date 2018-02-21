@@ -29,46 +29,27 @@ class SettingsController extends Controller
     public function store(Request $request)
     {
 
-        $data=$request['data'];
-        $data["serialized"]=0;
-
-        $condition=[
-            'key'=>$data['key']
-        ];
-
-        return (new DataAction)->StoreData(Setting::class,$condition,'',$data);
+        
 
     }
 
     public function edit($id)
     {
-        return (new DataAction)->EditData(Setting::class,$id);
         
     }
 
     public function update(Request $request,$id)
     {
         
-        $data=$request['data'];
-
-        return (new DataAction)->UpdateData(Setting::class,$data,'setting_id',$id);
+        
 
     }
 
     public function destroy($id)
     {
 
-        return (new DataAction)->DeleteData(Setting::class,'setting_id',$id);
         
-    }
-
-    public function item()
-    {
-
-        $settingItems=Setting::FetchSettingItem();
-
-        return response()->json($settingItems);
-
+        
     }
     
 

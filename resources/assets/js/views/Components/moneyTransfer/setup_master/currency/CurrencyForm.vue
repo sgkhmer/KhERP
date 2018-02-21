@@ -23,11 +23,18 @@
 		},
 		data(){
 			return{
-				url:'/api/account_type/',
+				url:'/api/currencies/',
 				e1:true,
 				valid: true,
 			    group:[
-					{	class:'xs12 sm12 md12',	 key:'name',	type:'text',	 text:'Name',count:100	}
+					{	class:'xs12 sm6 md6',	 key:'title',	type:'text',	 text:'Title',count:100	},
+					{	class:'xs12 sm6 md6',	 key:'code',	type:'text',text:'Code',count:3	},
+					{	class:'xs12 sm6 md6',	 key:'symbol_left',	type:'text',	 text:'Symbol Left',count:100	},
+					{	class:'xs12 sm6 md6',	 key:'symbol_right',	type:'text',	 text:'Symbol Right',count:0,value:''	},
+					{	class:'xs12 sm6 md6',	 key:'decimal_place',	type:'text',	 text:'Decimal Place',count:0,value:''	},
+					{	class:'xs12 sm6 md6',	 key:'value',	type:'number',	 text:'Value',count:50	},
+					{	class:'xs12 sm6 md6',	 key:'status',	type:'select',	 text:'Status',count:0,items:'statusItems'	},
+					{	class:'xs12 sm6 md6',	 key:'date_modified',	type:'date',	 text:'Date Modified',count:20	}
 				],
 				rules:{
 					name: [
@@ -36,11 +43,22 @@
 				    ]
 				},
 				data:{
-					name:''
+					title:'',
+					code:'',
+					symbol_left: '',
+					symbol_right: '',
+					decimal_place:'',
+					value:'',
+					status:1,
+					date_modified:'2018-01-25'
 				},
 				select:{
 					date_added:false,
-					date_modified:false
+					date_modified:false,
+					statusItems:[
+						{text:'Active',value:1},
+						{text:'Inactive',value:0}
+					]
 				},
 				breadcrumbTitle:'Tax Class',
 				breadcrumbs: [
@@ -49,7 +67,7 @@
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Currency',
 			          disabled: false
 			        },
 			        {
@@ -57,7 +75,7 @@
 			          disabled: true
 			        }
 			    ],
-			    backUrl:'/admin/account_type/list',
+			    backUrl:'/admin/currencies/list',
 			}
 		},
 		methods:{

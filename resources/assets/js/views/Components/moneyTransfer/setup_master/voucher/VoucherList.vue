@@ -39,23 +39,23 @@
 		],
 		data(){
 			return{
-				url:'/api/account_rule/',
-				btnNewUrl:'/admin/account_rule/add',
-				listTitle:'Account Rule List',
+				url:'/api/voucher/',
+				btnNewUrl:'/admin/voucher/add',
+				listTitle:'Voucher List',
 				headers: [
-			        { text: 'AccountRule ID',align: 'left',class:'text-xs-left',value: 'account_rule_id'},
-			        { text: 'Account Name',align:'left',class:'text-xs-left', value: 'name' },
-			        {text: 'Action',align:'center',class:'text-xs-center',value:'account_rule_id',status:'status',sortable: false}
+			        { text: 'Voucher ID',align: 'left',class:'text-xs-left',value: 'voucher_id'},
+			        { text: 'Name',align:'left',class:'text-xs-left', value: 'name' },
+			        {text: 'Action',align:'center',class:'text-xs-center',value:'voucher_id',status:'status',sortable: false}
 			    ],
 				attribute:[],
-				breadcrumbTitle:'Account Rule List',
+				breadcrumbTitle:'Voucher List',
 				breadcrumbs: [
 			        {
 			          text: 'Home',
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Voucher',
 			          disabled: false
 			        },
 			        {
@@ -68,7 +68,7 @@
 		components:{'dataTable':dataTable,'breadcrumb1btn':breadcrumb1btn},
 		created(){
 			this.fetchData()
-			document.title = 'Account Rule List';
+			document.title = 'Voucher List';
 		},
 		methods:{
 			fetchData(){

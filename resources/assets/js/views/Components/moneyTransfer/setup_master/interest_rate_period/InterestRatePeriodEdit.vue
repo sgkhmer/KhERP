@@ -1,8 +1,8 @@
-<template>
+<template id="{{ $route.params.id }}">
 	<v-app id="inspire">
 		<normal-form
 			v-bind:url="url"
-			v-bind:id="0"
+			v-bind:id="id"
 			v-bind:breadcrumb-title="breadcrumbTitle"
 			v-bind:breadcrumbs="breadcrumbs"
 			v-bind:form-items="group"
@@ -13,43 +13,41 @@
 		></normal-form>
 	</v-app>
 </template>
+
 <script>
 	import Flash from '../../../../../helper/flash'
 	import axios from 'axios'
 	import normalForm from '../../commons/form/normalForm.vue'
 	export default{
+		props:['id'],
 		components:{
 			'normalForm':normalForm
 		},
 		data(){
 			return{
-				url:'/api/account_type/',
+				url:'/api/interest_rate_period/',
 				e1:true,
 				valid: true,
 			    group:[
-					{	class:'xs12 sm12 md12',	 key:'name',	type:'text',	 text:'Name',count:100	}
+					{	class:'xs12 sm6 md6',	 key:'name',	type:'text',	 text:'Interest Rate Period',count:100	}
 				],
 				rules:{
 					name: [
-				      (v) => !!v || 'Name is required',
-				      (v) => v && v.length <= 50 || 'Title must be less than 50 characters'
+				      (v) => !!v || 'Interest Rate Period Name is required',
+				      (v) => v && v.length <= 100 || 'Title must be less than 100 characters'
 				    ]
 				},
 				data:{
 					name:''
 				},
-				select:{
-					date_added:false,
-					date_modified:false
-				},
-				breadcrumbTitle:'Tax Class',
+				breadcrumbTitle:'Interest Rate Period',
 				breadcrumbs: [
 			        {
-			          text: 'Home',
+			          text: 'Administrator',
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Interest Rate Period',
 			          disabled: false
 			        },
 			        {
@@ -57,11 +55,20 @@
 			          disabled: true
 			        }
 			    ],
-			    backUrl:'/admin/account_type/list',
+			    backUrl:'/admin/interest_rate_period/list',
 			}
 		},
+		created(){
+			this.dataID=this.id
+			this.fetchData(this.id)
+		},
 		methods:{
-			
+			fetchData(id){
+				axios.get(this.url+id+'/edit').then(res=>{
+					this.data=res.data
+					console.log(res.data)
+				});
+			}
 		}
 	}
 </script>

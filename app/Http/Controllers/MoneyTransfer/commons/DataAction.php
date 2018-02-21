@@ -4,7 +4,7 @@
 	use Illuminate\Http\Request;
 	use App\Http\Controllers\Controller;
 	use Illuminate\Support\Facades\DB;
-	use App\Http\Controllers\Backend\commons\ImageMaker;
+	use App\Http\Controllers\MoneyTransfer\commons\ImageMaker;
 	/*
 	    DataAction class use for any action the data from any table
 	    currently i have create function and parameter as below:

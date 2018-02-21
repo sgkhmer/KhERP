@@ -25,45 +25,29 @@
 		},
 		data(){
 			return{
-				url:'/api/attribute/',
+				url:'/api/account_rule/',
 				e1:true,
 				valid: true,
 			    group:[
-					{	class:'xs12 sm6 md6',	 key:'name',	type:'text',	 text:'Attribute Name',count:100	},
-					{	class:'xs12 sm6 md6',	 key:'attribute_group_id',	type:'select',text:'Attribute Group',count:0,items:'attributeGroups'	},
-					{	class:'xs12 sm6 md6',	 key:'sort_order',	type:'number',	 text:'Sort Order',count:100	},
-					{	class:'xs12 sm6 md6',	 key:'language_id',	type:'select',	 text:'Language',count:100,items:'languages'	}
+					{	class:'xs12 sm6 md6',	 key:'name',	type:'text',	 text:'Account Rule Name',count:100	}
 				],
 				rules:{
 					name: [
-				      (v) => !!v || 'Attribute Name is required',
+				      (v) => !!v || 'Account Rule Name is required',
 				      (v) => v && v.length <= 100 || 'Title must be less than 100 characters'
-				    ],
-				    attribute_group_id:[
-				      (v) => !!v || 'Language Requied is required'
-				    ],
-				    language_id:[
-				      (v) => !!v || 'Language Requied is required'
 				    ]
 				},
 				data:{
-					name:'',
-					attribute_group_id:'',
-					language_id:'',
-					sort_order:0,
+					name:''
 				},
-				select:{
-					attributeGroups:[],
-					languages:[]
-				},
-				breadcrumbTitle:'Attributes',
+				breadcrumbTitle:'Account Rule',
 				breadcrumbs: [
 			        {
 			          text: 'Administrator',
 			          disabled: false
 			        },
 			        {
-			          text: 'Attributes',
+			          text: 'Account Rule',
 			          disabled: false
 			        },
 			        {
@@ -71,14 +55,12 @@
 			          disabled: true
 			        }
 			    ],
-			    backUrl:'/admin/attributes/list',
+			    backUrl:'/admin/account_rule/list',
 			}
 		},
 		created(){
 			this.dataID=this.id
 			this.fetchData(this.id)
-			this.getAttributeGroup()
-			this.getLanguage()
 		},
 		methods:{
 			fetchData(id){
@@ -86,16 +68,6 @@
 					this.data=res.data
 					console.log(res.data)
 				});
-			},
-			getAttributeGroup(){
-				axios.get('/api/getAttributeGroup').then((res)=>{
-					this.select.attributeGroups=res.data
-				})
-			},
-			getLanguage(){
-				axios.get('/api/getLanguage').then((res)=>{
-					this.select.languages=res.data
-				})
 			}
 		}
 	}

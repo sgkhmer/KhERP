@@ -23,11 +23,11 @@
 		},
 		data(){
 			return{
-				url:'/api/account_type/',
+				url:'/api/booking_type/',
 				e1:true,
 				valid: true,
 			    group:[
-					{	class:'xs12 sm12 md12',	 key:'name',	type:'text',	 text:'Name',count:100	}
+					{	class:'xs12 sm12 md12',	 key:'name',	type:'text',	 text:'BookingType',count:100	}
 				],
 				rules:{
 					name: [
@@ -49,7 +49,7 @@
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Booking Type',
 			          disabled: false
 			        },
 			        {
@@ -57,7 +57,7 @@
 			          disabled: true
 			        }
 			    ],
-			    backUrl:'/admin/account_type/list',
+			    backUrl:'/admin/booking_type/list',
 			}
 		},
 		methods:{

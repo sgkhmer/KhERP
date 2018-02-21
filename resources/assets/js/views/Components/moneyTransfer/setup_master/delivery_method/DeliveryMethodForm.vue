@@ -23,11 +23,11 @@
 		},
 		data(){
 			return{
-				url:'/api/account_type/',
+				url:'/api/delivery_method/',
 				e1:true,
 				valid: true,
 			    group:[
-					{	class:'xs12 sm12 md12',	 key:'name',	type:'text',	 text:'Name',count:100	}
+					{	class:'xs12 sm6 md6',key:'name',	type:'text',	 text:'Name'}
 				],
 				rules:{
 					name: [
@@ -36,11 +36,19 @@
 				    ]
 				},
 				data:{
-					name:''
+					name:'',
+					created_by:1,
+					modified_by:1,
+					created_at:'2018-01-25',
+					updated_at:'2018-01-25'
 				},
 				select:{
-					date_added:false,
-					date_modified:false
+					created_at:false,
+					updated_at:false,
+					statusItems:[
+						{text:'Active',value:1},
+						{text:'Inactive',value:0}
+					]
 				},
 				breadcrumbTitle:'Tax Class',
 				breadcrumbs: [
@@ -49,7 +57,7 @@
 			          disabled: false
 			        },
 			        {
-			          text: 'Account Rule',
+			          text: 'Delivery Method',
 			          disabled: false
 			        },
 			        {
@@ -57,7 +65,7 @@
 			          disabled: true
 			        }
 			    ],
-			    backUrl:'/admin/account_type/list',
+			    backUrl:'/admin/delivery_method/list',
 			}
 		},
 		methods:{
